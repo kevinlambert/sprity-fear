@@ -1,8 +1,16 @@
+/***************************************
+    file: sprites/_variables.scss
+***************************************/
+
 {{#each layouts}}
   {{#each layout.items}}
     ${{#if ../../opt.split}}{{cssesc ../../name}}-{{/if}}{{cssesc meta.name}}: -{{baseDim x}}px -{{baseDim y}}px {{baseDim width}}px {{baseDim height}}px;
   {{/each}}
 {{/each}}
+
+/***************************************
+    file: sprites/_mixins.scss
+***************************************/
 
 @mixin sprite-width($sprite) {
   width: nth($sprite, 3);
@@ -35,13 +43,17 @@
   @include sprite-height($sprite);
 }
 
+/***************************************
+    file: sprites/_extends.scss
+***************************************/
+
 {{#each layouts}}
   {{#each sprites}}
 
     {{#if dpi}}
     @media (-webkit-min-device-pixel-ratio: {{ratio}}), (min-resolution: {{dpi}}dpi) {
     {{/if}}
-    {{../../indicator}}{{cssesc ../classname}} {
+    %{{cssesc ../classname}} {
       background-image: url($fear-core-ui-images-dir + '/sprites{{escimage url}}');
       {{#if dpi}}
       background-size: {{baseWidth}}px {{baseHeight}}px;
@@ -53,3 +65,26 @@
   {{/each}}
 
 {{/each}}
+
+
+
+/***************************************
+    file: sprites/_module_sprites.scss
+***************************************/
+
+{{#each layouts}}
+  {{#each sprites}}
+
+    {{#if dpi}}
+      @media (-webkit-min-device-pixel-ratio: {{ratio}}), (min-resolution: {{dpi}}dpi) {
+      {{/if}}
+          {{../../indicator}}{{cssesc ../classname}} {
+          @extend %{{cssesc ../classname}};
+      }
+      {{#if dpi}}
+      }
+      {{/if}}
+  {{/each}}
+
+{{/each}}
+
