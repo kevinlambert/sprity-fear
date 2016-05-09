@@ -65,20 +65,3 @@
 
 {{/each}}
 
-
-
-/***************************************
-    file: sprites/_module_sprites.scss
-***************************************/
-
-{{#each layouts}}
-  {{#each sprites}}
-
-      {{../../indicator}}{{cssesc ../classname}} {
-          @extend %{{cssesc ../classname}};
-      }
-
-  {{/each}}
-
-{{/each}}
-
