@@ -49,16 +49,15 @@
 
 {{#each layouts}}
   {{#each sprites}}
-
     {{#if dpi}}
     @media (-webkit-min-device-pixel-ratio: {{ratio}}), (min-resolution: {{dpi}}dpi) {
     {{/if}}
-    %{{cssesc ../classname}} {
-      background-image: url($fear-core-ui-images-dir + '/sprites{{escimage url}}');
-      {{#if dpi}}
-      background-size: {{baseWidth}}px {{baseHeight}}px;
-      {{/if}}
-    }
+      %{{cssesc ../classname}} {
+        background-image: url($fear-core-ui-images-dir + '/sprites{{escimage url}}');
+        {{#if dpi}}
+        background-size: {{baseWidth}}px {{baseHeight}}px;
+        {{/if}}
+      }
     {{#if dpi}}
     }
     {{/if}}
@@ -75,15 +74,10 @@
 {{#each layouts}}
   {{#each sprites}}
 
-    {{#if dpi}}
-      @media (-webkit-min-device-pixel-ratio: {{ratio}}), (min-resolution: {{dpi}}dpi) {
-      {{/if}}
-          {{../../indicator}}{{cssesc ../classname}} {
+      {{../../indicator}}{{cssesc ../classname}} {
           @extend %{{cssesc ../classname}};
       }
-      {{#if dpi}}
-      }
-      {{/if}}
+
   {{/each}}
 
 {{/each}}
